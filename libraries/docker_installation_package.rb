@@ -54,7 +54,7 @@ module DockerCookbook
 
     # These are helpers for the properties so they are not in an action class
     def default_docker_version
-      '18.06.0'
+      '18.06.1'
     end
 
     def default_package_name
@@ -155,7 +155,7 @@ module DockerCookbook
         return "#{v}.ce-1.el7"
       elsif v.to_f < 18.06 && !bionic?
         return "#{v}.ce-1.el7.centos" if el7?
-        return "#{v}~ce-0~debian" if debian?
+        return "#{v}~ce~3-0~debian" if debian?
         return "#{v}~ce-0~ubuntu" if ubuntu?
       elsif v.to_f >= 18.09 && debuntu?
         return "5:#{v}~#{test_version}-0~debian-#{codename}" if debian?
