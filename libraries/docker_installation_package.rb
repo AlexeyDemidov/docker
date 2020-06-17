@@ -54,7 +54,7 @@ module DockerCookbook
 
     # These are helpers for the properties so they are not in an action class
     def default_docker_version
-      '18.06.2'
+      '19.03.11'
     end
 
     def default_package_name
@@ -166,7 +166,7 @@ module DockerCookbook
         return "#{v}.ce" if fedora?
         return "#{v}.ce-#{test_version}.el7" if el7?
         return "#{v}~ce~#{test_version}-0~debian" if debian?
-        return "#{v}~ce~#{test_version}-0~ubuntu" if ubuntu?
+        return "#{v}~#{test_version}-0~ubuntu" if ubuntu?
         v
       end
     end
