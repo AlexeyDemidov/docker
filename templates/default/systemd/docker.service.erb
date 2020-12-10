@@ -3,12 +3,12 @@ Description=Docker Application Container Engine
 Documentation=https://docs.docker.com
 BindsTo=containerd.service
 <% if @docker_socket.nil? %>
-After=network-online.target firewalld.service containerd.service
+After=network-online.target firewalld.service containerd.service multi-user.target
 Wants=network-online.target
 <% else %>
-After=network-online.target firewalld.service containerd.service
+After=network-online.target firewalld.service containerd.service multi-user.target
 Wants=network-online.target
-Requires=<%= @docker_name %>.socket
+Requires=<%= @docker_name %>.socket containerd.service
 <% end %>
 
 [Service]
@@ -47,6 +47,7 @@ Delegate=yes
 
 # kill only the docker process, not all processes in the cgroup
 KillMode=process
+OOMScoreAdjust=-500
 
 [Install]
 WantedBy=multi-user.target
